@@ -13,3 +13,11 @@ WORKDIR /contrans2023
 EXPOSE 8888
 
 CMD ["jupyter", "lab","--ip=0.0.0.0","--allow-root"]
+
+RUN apt-get update
+
+RUN apt-get install nodejs -y
+
+RUN apt-get install npm -y
+
+RUN npm install -g dbdocs
