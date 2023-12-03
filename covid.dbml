@@ -1,0 +1,58 @@
+Table country_profile {
+  country_id int [pk, increment] // primary key
+  iso_code varchar
+  continent varchar
+  country_name varchar
+  population bigint
+  gdp_per_capita decimal
+  aged_65_older decimal
+  aged_70_older decimal
+  cardiovasc_death_rate decimal
+  diabetes_prevalence decimal
+  female_smokers decimal
+  male_smokers decimal
+  hospital_beds_per_thousand decimal
+  life_expectancy decimal
+  human_development_index decimal
+  population_density decimal
+  median_age decimal
+}
+
+
+Table covid_daily_stats {
+  stats_id int [pk, increment] // primary key
+  country_id int [ref: > country_profile.country_id]
+  date date
+  total_cases bigint
+  new_cases int
+  new_cases_smoothed decimal
+  total_deaths bigint
+  new_deaths int
+  new_deaths_smoothed decimal
+  total_cases_per_million decimal
+  new_cases_per_million decimal
+  new_cases_smoothed_per_million decimal
+  total_deaths_per_million decimal
+  new_deaths_per_million decimal
+  new_deaths_smoothed_per_million decimal
+  reproduction_rate decimal
+}
+
+
+Table covid_vaccination_stats {
+  vaccination_id int [pk, increment] // primary key
+  country_id int [ref: > country_profile.country_id]
+  date date
+  new_vaccinations_smoothed bigint
+  new_vaccinations_smoothed_per_million decimal
+  new_people_vaccinated_smoothed bigint
+  new_people_vaccinated_smoothed_per_hundred decimal
+}
+
+
+Table government_response {
+  response_id int [pk, increment] // primary key
+  country_id int [ref: > country_profile.country_id]
+  date date
+  stringency_index decimal
+}
